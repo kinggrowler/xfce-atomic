@@ -1,3 +1,11 @@
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+name: xfce-atomic
+description: A modern lightweight atomic desktop
+
+base-image:
+image-version: 42
+
+
 variables:
   variant: "xfce-atomic"
   exclude_perl: false
