@@ -3,39 +3,19 @@
 # infrastructure are run via Pungi in a Koji runroot.
 
 # Set a default for some recipes
-default_variant := "silverblue"
+default_variant := "xfce-atomic"
 default_arch := "default"
 # Current default in Pungi
 force_nocache := "true"
 
 # Just doesn't have a native dict type, but quoted bash dictionary works fine
 pretty_names := '(
-    [silverblue]="Silverblue"
-    [kinoite]="Kinoite"
-    [kinoite-nightly]="Kinoite"
-    [kinoite-beta]="Kinoite"
-    [kinoite-mobile]="Kinoite"
-    [sway-atomic]="Sway Atomic"
-    [budgie-atomic]="Budgie Atomic"
     [xfce-atomic]="XFCE Atomic"
-    [lxqt-atomic]="LXQt Atomic"
-    [base-atomic]="Base Atomic"
-    [cosmic-atomic]="COSMIC Atomic"
 )'
 
 # subset of the map from https://pagure.io/pungi-fedora/blob/main/f/general.conf
 volume_id_substitutions := '(
-    [silverblue]="SB"
-    [kinoite]="Kin"
-    [kinoite-nightly]="Kin"
-    [kinoite-beta]="Kin"
-    [kinoite-mobile]="Kin"
-    [sway-atomic]="SwA"
-    [budgie-atomic]="BdA"
     [xfce-atomic]="XfA"
-    [lxqt-atomic]="LxA"
-    [base-atomic]="BsA"
-    [cosmic-atomic]="CSMCA"
 )'
 
 # Define a retry function for use in recipes
@@ -59,13 +39,6 @@ retry() {
     return $r
 }
 '
-
-# Default is to only validate the manifests
-all: validate
-
-# Basic validation to make sure the manifests are not completely broken
-validate:
-    ./ci/validate
 
 # Comps-sync, but without pulling latest
 sync:
@@ -116,14 +89,14 @@ comps-sync-check:
     version="$(rpm-ostree compose tree --print-only --repo=repo ${default_variant}.yaml | jq -r '."mutate-os-release"')"
     ./comps-sync.py fedora-comps/comps-f${version}.xml.in
 
-# Output the processed manifest for a given variant (defaults to Silverblue)
+# Output the processed manifest for a given variant (defaults to xfce-atomic)
 manifest variant=default_variant:
     #!/bin/bash
     set -euo pipefail
 
     rpm-ostree compose tree --print-only --repo=repo {{variant}}.yaml
 
-# Perform dependency resolution for a given variant (defaults to Silverblue)
+# Perform dependency resolution for a given variant (defaults to xfce-atomic)
 compose-dry-run variant=default_variant:
     #!/bin/bash
     set -euxo pipefail
@@ -140,7 +113,7 @@ compose-dry-run variant=default_variant:
 # Alias/shortcut for compose-image command
 compose variant=default_variant: (compose-image variant)
 
-# Compose a variant using the legacy non container path (defaults to Silverblue)
+# Compose a variant using the legacy non container path (defaults to xfce-atomic)
 compose-legacy variant=default_variant:
     #!/bin/bash
     set -euxo pipefail
@@ -152,8 +125,6 @@ compose-legacy variant=default_variant:
         echo "Unknown variant"
         exit 1
     fi
-
-    ./ci/validate > /dev/null || (echo "Failed manifest validation" && exit 1)
 
     mkdir -p repo cache logs
     if [[ ! -f "repo/config" ]]; then
@@ -207,13 +178,6 @@ compose-image variant=default_variant:
         echo "Unknown variant"
         exit 1
     fi
-
-    if [[ "${variant}" == "kinoite-nightly" ]] && [[ "$(uname -m)" != "x86_64" ]]; then
-        echo "Kinoite Nightly not available for aarch64 for now"
-        exit 0
-    fi
-
-    ./ci/validate > /dev/null || (echo "Failed manifest validation" && exit 1)
 
     mkdir -p repo cache
     if [[ ! -f "repo/config" ]]; then
@@ -375,11 +339,6 @@ upload-container variant=default_variant arch=default_arch:
         exit 1
     fi
 
-    if [[ "${variant}" == "kinoite-nightly" ]] && [[ "$(uname -m)" != "x86_64" ]]; then
-        echo "Kinoite Nightly not available for aarch64 for now"
-        exit 0
-    fi
-
     if [[ "${CI}" != "true" ]]; then
         echo "Skipping: Not in CI"
         exit 1
@@ -508,10 +467,6 @@ multi-arch-manifest variant=default_variant:
         buildah manifest create "${image}:${version}.${buildid}" \
                 "${image}:${version}.${buildid}-x86_64" \
                 "${image}:${version}.${buildid}-aarch64"
-    else
-        echo "Kinoite Nightly not available for aarch64 for now"
-        buildah manifest create "${image}:${version}.${buildid}" \
-                "${image}:${version}.${buildid}-x86_64"
     fi
 
     # Decode private key
@@ -536,3 +491,4 @@ multi-arch-manifest variant=default_variant:
 
     # Cleanup private key
     rm private.key.b64 private.key
+
