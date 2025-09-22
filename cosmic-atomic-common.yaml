@@ -1,0 +1,19 @@
+variables:
+  variant: "cosmic-atomic"
+
+include:
+  - common.yaml
+  - cosmic-atomic-packages.yaml
+
+ref: fedora/rawhide/${basearch}/cosmic-atomic
+rojig:
+  name: fedora-cosmic
+  summary: "Fedora COSMIC Atomic"
+  license: MIT
+
+packages:
+  - fedora-release-cosmic-atomic
+  # Portals for Flatpak
+  - xdg-desktop-portal-gtk
+  # Power management. Expected to be droped for tuned-ppd
+  - power-profiles-daemon

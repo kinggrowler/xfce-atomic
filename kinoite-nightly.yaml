@@ -1,0 +1,11 @@
+include:
+  - kinoite-common.yaml
+
+# Kept in the leaf manifest as they are overwritten by Pungi in composes
+repos:
+  - copr:copr.fedorainfracloud.org:solopasha:plasma-unstable
+  - copr:copr.fedorainfracloud.org:solopasha:kde-gear-unstable
+  - fedora-rawhide-no-kde
+  # - fedora-rawhide
+  # - fedora-43
+  # - fedora-43-updates
