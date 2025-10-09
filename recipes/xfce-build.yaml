@@ -1,0 +1,23 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+name: parav-base
+description: A modern lightweight atomic desktop
+
+base-image: quay.io/fedora-ostree-desktops/base-atomic
+image-version: 42
+
+modules:
+  #- type: files
+  #  files:
+  #    - source: installers
+  #      destination: /
+
+  - type: script
+    scripts:
+      - 00-image-info.sh
+
+include:
+  - xfce-atomic.yaml
+
+  - type: signing
+
