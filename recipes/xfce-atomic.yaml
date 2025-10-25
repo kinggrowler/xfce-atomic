@@ -109,7 +109,7 @@ modules:
 
   - type: script
     scripts:
-      - 00-image-info.sh
+      #- 00-image-info.sh
       - 01-base-main.sh
       - 02-base-packages.sh
       - 10-core.sh
