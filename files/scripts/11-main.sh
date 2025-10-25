@@ -4,7 +4,7 @@ set -xeuo pipefail
 #dnf5 -y install bootupd
 
 # Transforms /usr/lib/ostree-boot into a bootupd-compatible update payload
-/usr/bin/bootupctl backend generate-update-metadata
+#/usr/bin/bootupctl backend generate-update-metadata
 
 # Enable migration to a static GRUB config
 install -dm0755 /usr/lib/systemd/system/bootloader-update.service.d
