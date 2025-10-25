@@ -1,7 +1,7 @@
 #!/bin/bash
 set -xeuo pipefail
 
-dnf5 -y install bootupd
+#dnf5 -y install bootupd
 
 # Transforms /usr/lib/ostree-boot into a bootupd-compatible update payload
 /usr/bin/bootupctl backend generate-update-metadata
