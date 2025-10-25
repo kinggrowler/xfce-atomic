@@ -83,7 +83,7 @@ modules:
       - printer-driver-brlaser
       - ptouch-driver
       - splix
-      - qemu-user-static-x86_64
+      - qemu-user-static
       - qemu-user-static-aarch64
    # remove:
    #   - PackageKit
