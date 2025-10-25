@@ -83,7 +83,8 @@ modules:
       - printer-driver-brlaser
       - ptouch-driver
       - splix
-      - qemu-user-static-x86_64.yaml
+      - qemu-user-static-x86_64
+      - qemu-user-static-aarch64
    # remove:
    #   - PackageKit
    #   # We can not include openh264. See https://fedoraproject.org/wiki/OpenH264
