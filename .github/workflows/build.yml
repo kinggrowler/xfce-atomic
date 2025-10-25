@@ -1,8 +1,8 @@
 name: Build latest images
 on:
-  #schedule:
-  #  - cron:
-  #      "00 07 */3 * *" # build at 07:00 UTC every 3 days
+  schedule:
+    - cron:
+        "00 05 * * *" # build at 05:00 UTC every day
   push:
     branches:
       - master
