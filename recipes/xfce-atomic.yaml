@@ -3,7 +3,7 @@
 name: xfce-atomic
 description: A modern lightweight atomic desktop based on XFCE
 
-base-image: quay.io/repository/fedora-ostree-desktops/base-atomic
+base-image: quay.io/fedora-ostree-desktops/base-atomic
 image-version: 42
 
 
