@@ -1,34 +1,136 @@
+---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: xfce-atomic
-description: A modern lightweight atomic desktop
+description: A modern lightweight atomic desktop based on XFCE
 
-base-image:
+base-image: quay.io/repository/fedora-ostree-desktops/base-atomic
 image-version: 42
 
 
-variables:
-  variant: "xfce-atomic"
-  exclude_perl: false
+modules:
+  - type: files
+    files:
+      - source: system
+        destination: /
+
+  - type: rpm-ostree
+    install:
+      # Ensure that we have a kernel. Kernel packages are not in any comps group
+      - kernel
+      - kernel-modules
+      - kernel-modules-extra
+      - fedora-release-xfce
+      - grub2-efi-ia32
+      - grub2-efi-x64
+      - grub2-pc
+      - efibootmgr
+      - shim-x64
+      - bootc
+      - dnf5
+      - dnf5-plugins
+      # Generic release sub package for desktop variants
+      - fedora-release-ostree-desktop
+      # Portals for Flatpak
+      - xdg-desktop-portal-gtk
+      # Do not include "full" Git as it brings in Perl
+      - git-core
+      # Explicitely add Git docs
+      - git-core-doc
+      # Required until we've completed the move to systemd-sysusers
+      # See: https://github.com/fedora-silverblue/issue-tracker/issues/362
+      - nss-altfiles
+      # Container management
+      - buildah
+      - podman
+      - skopeo
+      # Keep slirp4netns for rootless containers until it's fully deprecated in podman
+      # See: https://github.com/fedora-silverblue/issue-tracker/issues/547
+      - slirp4netns
+      # Keep fuse-overlayfs for compatibilty and rootless containers use cases
+      # See: https://github.com/coreos/fedora-coreos-tracker/issues/1749
+      - fuse-overlayfs
+      # See: https://github.com/fedora-silverblue/issue-tracker/issues/503
+      - systemd-container
+      # Provides terminal tools like clear, reset, tput, and tset
+      - ncurses
+      # Flatpak support
+      - flatpak
+      - xdg-desktop-portal
+      # Contains default ostree remote config to be used on client's
+      # system for fetching ostree update
+      - fedora-repos-ostree
+      # the archive repo for more reliable package layering
+      # https://github.com/coreos/fedora-coreos-tracker/issues/400
+      - fedora-repos-archive
+      # Always include at least full English language support by default
+      # https://gitlab.com/fedora/ostree/sig/-/issues/14
+      - langpacks-en
+      # Kept for backward compatibility for AppImages
+      # See: https://gitlab.com/fedora/ostree/sig/-/issues/50
+      - fuse
+      - fuse-libs
+      # Selected packages from the anaconda-tools group. See: https://gitlab.com/fedora/ostree/sig/-/issues/5
+      - dosfstools
+      - lvm2
+      - nvme-cli
+      - xfsprogs
+      # HFS filesystem tools for Apple hardware
+      # See https://github.com/projectatomic/rpm-ostree/issues/1380
+      - hfsplus-tools
+      # More printer drivers. See: https://gitlab.com/fedora/ostree/sig/-/issues/63
+      - c2esp
+      - dymo-cups-drivers
+      - printer-driver-brlaser
+      - ptouch-driver
+      - splix
+      - qemu-user-static-x86_64.yaml
+    remove:
+      - PackageKit
+      # We can not include openh264. See https://fedoraproject.org/wiki/OpenH264
+      - gstreamer1-plugin-openh264
+      - mozilla-openh264
+      - openh264
+      # Do not include dnf4. Classic ostree also exclude dnf5 in another manifest
+      - dnf
+      - dnf-plugins-core
+      # https://github.com/fedora-silverblue/issue-tracker/issues/517
+      - grubby
+      - sdubby
+      # Exclude Tk. We can not exclude Tcl as it is neeeded for usb_modeswitch
+      - tk
+      # Exclude QEMU. See: https://gitlab.com/fedora/ostree/sig/-/issues/58
+      - qemu-kvm
+      - qemu-kvm-core
+      - qemu-device-display-virtio-gpu
+      - qemu-device-display-virtio-vga
+      # See: https://github.com/fedora-silverblue/issue-tracker/issues/646
+      - hplip-gui
+
+  - type: script
+    scripts:
+      - 00-image-info.sh
+      #- 01-ublue-main.sh
+      - 02-ublue-packages.sh
+      - 10-core.sh
+      #- 11-main.sh
+      - 95-sanity-check.sh
+
+  - type: signing
+-----
+
+
 
 include:
-  - common.yaml
-  - xfce-atomic-packages.yaml
+  # Packages common to all variants
+  - common-packages.yaml
+  # See: https://gitlab.com/fedora/ostree/sig/-/issues/1
+  - bootupd.yaml
+  # Dracut configuration for the initramfs
+  - initramfs.yaml
+  # Read only sysroot
+  - sysroot-ro.yaml
+  # Enable kernel-install support
+  - kernel-install.yaml
+  # Enable composefs
+  - composefs.yaml
 
-ref: fedora/rawhide/${basearch}/vauxite
-rojig:
-  name: fedora-vauxite
-  summary: "Fedora XFCE Atomic"
-  license: MIT
-
-packages:
-  - fedora-release-xfce
-  # Generic release sub package for desktop variants
-  - fedora-release-ostree-desktop
-  # Portals for Flatpak
-  - xdg-desktop-portal-gtk
-
-# Kept in the leaf manifest as they are overwritten by Pungi in composes
-repos:
-  - fedora-rawhide
-  # - fedora-44
-  # - fedora-44-updates
