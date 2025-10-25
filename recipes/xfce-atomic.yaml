@@ -109,28 +109,14 @@ modules:
   - type: script
     scripts:
       - 00-image-info.sh
-      #- 01-ublue-main.sh
-      - 02-ublue-packages.sh
+      - 01-base-main.sh
+      - 02-base-packages.sh
       - 10-core.sh
-      #- 11-main.sh
+      - 11-main.sh
+      - 12-initramfs.yaml
+      - 13-sysroot-ro.yaml
+      - 14-composefs.yaml
       - 95-sanity-check.sh
 
   - type: signing
------
-
-
-
-include:
-  # Packages common to all variants
-  - common-packages.yaml
-  # See: https://gitlab.com/fedora/ostree/sig/-/issues/1
-  - bootupd.yaml
-  # Dracut configuration for the initramfs
-  - initramfs.yaml
-  # Read only sysroot
-  - sysroot-ro.yaml
-  # Enable kernel-install support
-  - kernel-install.yaml
-  # Enable composefs
-  - composefs.yaml
 

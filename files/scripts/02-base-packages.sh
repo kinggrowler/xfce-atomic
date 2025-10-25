@@ -13,14 +13,14 @@ INCLUDED_PACKAGES=($(jq -r "[(.all.include | (select(.all != null).all)[]), \
                     (.all.include | (select(.\"$BASE_IMAGE_NAME\" != null).\"$BASE_IMAGE_NAME\")[]), \
                     (select(.\"$FEDORA_MAJOR_VERSION\" != null).\"$FEDORA_MAJOR_VERSION\".include | (select(.all != null).all)[]), \
                     (select(.\"$FEDORA_MAJOR_VERSION\" != null).\"$FEDORA_MAJOR_VERSION\".include | (select(.\"$BASE_IMAGE_NAME\" != null).\"$BASE_IMAGE_NAME\")[])] \
-                    | sort | unique[]" 02-ublue-packages.json))
+                    | sort | unique[]" 02-base-packages.json))
 
 # build list of all packages requested for exclusion
 EXCLUDED_PACKAGES=($(jq -r "[(.all.exclude | (select(.all != null).all)[]), \
                     (.all.exclude | (select(.\"$BASE_IMAGE_NAME\" != null).\"$BASE_IMAGE_NAME\")[]), \
                     (select(.\"$FEDORA_MAJOR_VERSION\" != null).\"$FEDORA_MAJOR_VERSION\".exclude | (select(.all != null).all)[]), \
                     (select(.\"$FEDORA_MAJOR_VERSION\" != null).\"$FEDORA_MAJOR_VERSION\".exclude | (select(.\"$BASE_IMAGE_NAME\" != null).\"$BASE_IMAGE_NAME\")[])] \
-                    | sort | unique[]" 02-ublue-packages.json))
+                    | sort | unique[]" 02-base-packages.json))
 
 # store a list of RPMs installed on the image
 INSTALLED_EXCLUDED_PACKAGES=()
