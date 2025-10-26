@@ -89,14 +89,13 @@ modules:
 
   - type: script
     scripts:
-      #- 00-image-info.sh
       - 01-base-main.sh
       - 02-base-packages.sh
       - 10-core.sh
       - 11-main.sh
-      - 12-initramfs.yaml
-      - 13-sysroot-ro.yaml
-      - 14-composefs.yaml
+      - 12-initramfs.sh
+      - 13-sysroot-ro.sh
+      - 14-composefs.sh
       - 95-sanity-check.sh
 
   - type: signing

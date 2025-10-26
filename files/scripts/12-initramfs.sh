@@ -3,16 +3,10 @@ set -xeuo pipefail
 
 install -dm 0755 -o 0 -g 0 /usr/lib/dracut/dracut.conf.d
 
-##!/usr/bin/env bash
-#set -xeuo pipefail
-
 cat > /usr/lib/dracut/dracut.conf.d/20-atomic-nohostonly.conf << 'EOF'
 # Default model is server-side generated initramfs
 hostonly=no
 EOF
-
-##!/usr/bin/env bash
-#set -xeuo pipefail
 
 cat > /usr/lib/dracut/dracut.conf.d/20-atomic-nostrip.conf << 'EOF'
 # We don't ship `strip` or `eu-strip` today, and even if we did, it doesn't
@@ -20,10 +14,8 @@ cat > /usr/lib/dracut/dracut.conf.d/20-atomic-nostrip.conf << 'EOF'
 do_strip=no
 EOF
 
-##!/usr/bin/env bash
-#set -xeuo pipefail
-
 cat > /usr/lib/dracut/dracut.conf.d/20-atomic-tpm-luks.conf << 'EOF'
 # Add support for systemd-cryptsetup and tpm2-tss LUKS locking
 add_dracutmodules+=" tpm2-tss systemd-pcrphase "
 EOF
+
