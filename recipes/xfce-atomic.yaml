@@ -28,6 +28,7 @@ modules:
       - bootc
       - dnf5
       - dnf5-plugins
+      - PackageKit-glib
       # Generic release sub package for desktop variants
       - fedora-release-ostree-desktop
       # Portals for Flatpak
@@ -85,27 +86,6 @@ modules:
       - splix
       - qemu-user-static
       - qemu-user-static-aarch64
-   # remove:
-   #   - PackageKit
-   #   # We can not include openh264. See https://fedoraproject.org/wiki/OpenH264
-   #   - gstreamer1-plugin-openh264
-   #   - mozilla-openh264
-   #   - openh264
-   #   # Do not include dnf4. Classic ostree also exclude dnf5 in another manifest
-   #   - dnf
-   #   - dnf-plugins-core
-   #   # https://github.com/fedora-silverblue/issue-tracker/issues/517
-   #   - grubby
-   #   - sdubby
-   #   # Exclude Tk. We can not exclude Tcl as it is neeeded for usb_modeswitch
-   #   - tk
-   #   # Exclude QEMU. See: https://gitlab.com/fedora/ostree/sig/-/issues/58
-   #   - qemu-kvm
-   #   - qemu-kvm-core
-   #   - qemu-device-display-virtio-gpu
-   #   - qemu-device-display-virtio-vga
-   #   # See: https://github.com/fedora-silverblue/issue-tracker/issues/646
-   #   - hplip-gui
 
   - type: script
     scripts:
