@@ -1,3 +1,7 @@
+# Set dracut configuration for the initramfs
+# See: https://gitlab.com/fedora/bootc/base-images/-/blob/main/tier-0/initramfs.yaml
+# See: https://github.com/coreos/fedora-coreos-config/tree/testing-devel/overlay.d/05core/usr/lib/dracut/dracut.conf.d
+
 #!/usr/bin/env bash
 set -xeuo pipefail
 

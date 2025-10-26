@@ -1,3 +1,6 @@
+# Enable composefs
+# See: https://fedoraproject.org/wiki/Changes/ComposefsAtomicDesktops
+
 #!/usr/bin/env bash
 
 set -xeuo pipefail

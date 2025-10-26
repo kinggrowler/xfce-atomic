@@ -1,3 +1,6 @@
+# Configuration to enable kernel-install integration
+# Keep in sync with https://gitlab.com/fedora/bootc/base-images/-/blob/main/tier-0/kernel-install.yaml
+
 #!/usr/bin/env bash
 set -xeuo pipefail
 
@@ -17,7 +20,7 @@ fi
 # Let's add the config to a distribution configuration file if dnf5
 # is used, we append to /etc/dnf/dnf.conf if not.
 if [ -d "/usr/share/dnf5/libdnf.conf.d/" ]; then
-  echo -e "[main]\ninstallonlypkgs=''" >> /usr/share/dnf5/libdnf.conf.d/20-ostree-installonlypkgs.conf
+  echo -e "[main]\ninstallonlypkgs=''" | tee /usr/share/dnf5/libdnf.conf.d/20-ostree-installonlypkgs.conf
 else
   echo "installonlypkgs=''" >> /etc/dnf/dnf.conf
 fi

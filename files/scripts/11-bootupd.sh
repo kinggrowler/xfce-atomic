@@ -1,9 +1,15 @@
+# KEEP THIS IN SYNC WITH https://github.com/coreos/fedora-coreos-config/blob/testing-devel/manifests/bootupd.yaml
+# Integration with https://github.com/coreos/bootupd
+# xref https://github.com/coreos/fedora-coreos-tracker/issues/510
+
 #!/bin/bash
 set -xeuo pipefail
 
+# ...already installed, so this breaks the workflow...
 #dnf5 -y install bootupd
 
 # Transforms /usr/lib/ostree-boot into a bootupd-compatible update payload
+# ...this breaks the workflow...
 #/usr/bin/bootupctl backend generate-update-metadata
 
 # Enable migration to a static GRUB config
@@ -17,3 +23,4 @@ echo "enable bootloader-update.service" > /usr/lib/systemd/system-preset/81-atom
 
 # Turn permissive mode on for bootupd until all SELinux issues are fixed
 semanage permissive --noreload --add bootupd_t
+

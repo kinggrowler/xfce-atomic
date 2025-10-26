@@ -15,20 +15,11 @@ modules:
 
   - type: rpm-ostree
     install:
+      # Most of these packages originally came from common.yaml file
       # Ensure that we have a kernel. Kernel packages are not in any comps group
       - kernel
       - kernel-modules
       - kernel-modules-extra
-      - fedora-release-xfce
-      - grub2-efi-ia32
-      - grub2-efi-x64
-      - grub2-pc
-      - efibootmgr
-      - shim-x64
-      - bootc
-      - dnf5
-      - dnf5-plugins
-      - PackageKit-glib
       # Generic release sub package for desktop variants
       - fedora-release-ostree-desktop
       # Portals for Flatpak
@@ -84,15 +75,26 @@ modules:
       - printer-driver-brlaser
       - ptouch-driver
       - splix
+      # Additional packages from elsewhere
+      - PackageKit-glib
+      - bootc
+      - dnf5
+      - dnf5-plugins
+      - efibootmgr
+      - fedora-release-xfce
+      - grub2-efi-ia32
+      - grub2-efi-x64
+      - grub2-pc
       - qemu-user-static
       - qemu-user-static-aarch64
+      - shim-x64
 
   - type: script
     scripts:
       - 01-base-main.sh
       - 02-base-packages.sh
       - 10-core.sh
-      - 11-main.sh
+      - 11-bootupd.sh
       - 12-initramfs.sh
       - 13-sysroot-ro.sh
       - 14-composefs.sh

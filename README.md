@@ -1,150 +1,223 @@
-# Experimental Ostree Native Container images for rpm-ostree based Fedora desktop variants
+# Manifests for Fedora Atomic Desktops variants
 
-## Overview
+This is the configuration needed to create
+[rpm-ostree](https://coreos.github.io/rpm-ostree/) based, desktop variants of
+Fedora, also known as
+[Fedora Atomic Desktops](https://fedoraproject.org/atomic-desktops/).
 
-This repo is a fork of
-[pagure.io/workstation-ostree-config](https://pagure.io/workstation-ostree-config)
-with CI and minor changes on top to enable us to build Bootable Container
-images for the Fedora Atomic Desktops.
+This repo is managed by the
+[Fedora Atomic Desktops SIG](https://fedoraproject.org/wiki/SIGs/AtomicDesktops).
 
-The offcial upstream sources for Fedora Silverblue, Fedora Kinoite, Fedora Sway
-Atomic, Fedora Budgie Atomic and Fedora COSMIC Atomic remain at
-[pagure.io/workstation-ostree-config](https://pagure.io/workstation-ostree-config)
-and the official builds are only available from the Fedora ostree repo for now.
+The currently official Fedora Atomic Desktop variants are:
 
-See the [Roadmap to Fedora Bootable Containers](https://gitlab.com/fedora/ostree/sig/-/issues/26)
-for the work in progress to switch the Fedora Atomic Desktops to Bootable Containers.
+- Fedora Silverblue
+- Fedora Kinoite
+- Fedora Sway Atomic
+- Fedora Budgie Atomic
 
-## Issues and PRs
+Reach out to the SIG if you are interested in creating and maintaining a new
+Atomic variant.
 
-Please submit PRs at
-[pagure.io/workstation-ostree-config](https://pagure.io/workstation-ostree-config)
-and file issues in the respective projects issue trackers:
+## Repository content
 
-- For issues impacting all Atomic desktop variants: [Fedora Atomic Desktops issue tracker](https://gitlab.com/fedora/ostree/sig/-/issues)
-- For Fedora Silverblue specific issues: [github.com/fedora-silverblue/issue-tracker](https://github.com/fedora-silverblue/issue-tracker/issues)
-- For Fedora Kinoite specific issues: [pagure.io/fedora-kde/SIG](https://pagure.io/fedora-kde/SIG/issues)
-- For Fedora Sway Atomic specific issues: [gitlab.com/fedora/sigs/sway/SIG](https://gitlab.com/fedora/sigs/sway/SIG/-/issues)
-- For Fedora Budgie Atomic specific issues: [pagure.io/fedora-budgie](https://pagure.io/fedora-budgie/project/issues)
-- For Fedora COSMIC Atomic specific issues: [pagure.io/fedora-cosmic/SIG](https://pagure.io/fedora-cosmic/SIG/issues)
+Each variant is described in a YAML
+[treefile](https://coreos.github.io/rpm-ostree/treefile/) which is then used by
+rpm-ostree to compose an ostree commit with the package requested.
 
-## Images built
+In the Fedora infrastructure, composes are made via
+[pungi](https://pagure.io/pungi) with the configuration from:
 
-This project builds the following images for all Fedora releases:
+- for Rawhide and branched composes:
+  [pagure.io/pungi-fedora](https://pagure.io/pungi-fedora)
+- for stable releases:
+  [pagure.io/fedora-infra](https://pagure.io/fedora-infra/ansible/blob/main/f/roles/bodhi2/backend/templates/pungi.rpm.conf.j2)
 
-- Fedora Silverblue:
-    - Unofficial build based on the official Silverblue variant
-    - [quay.io/repository/fedora-ostree-desktops/silverblue](https://quay.io/repository/fedora-ostree-desktops/silverblue?tab=tags)
-- Fedora Kinoite:
-    - Unofficial build based on the official Kinoite variant
-    - [quay.io/repository/fedora-ostree-desktops/kinoite](https://quay.io/repository/fedora-ostree-desktops/kinoite?tab=tags)
-- Fedora Sway Atomic:
-    - Unofficial build based on the official Sway Atomic variant
-    - [quay.io/repository/fedora-ostree-desktops/sway-atomic](https://quay.io/repository/fedora-ostree-desktops/sway-atomic?tab=tags)
-- Fedora Budgie Atomic:
-    - Unofficial build based on the official Budgie Atomic variant
-    - [quay.io/repository/fedora-ostree-desktops/budgie-atomic](https://quay.io/repository/fedora-ostree-desktops/budgie-atomic?tab=tags)
-- Fedora COSMIC Atomic:
-    - Unofficial build based on the official COSMIC Atomic variant
-    - [quay.io/repository/fedora-ostree-desktops/cosmic-atomic](https://quay.io/repository/fedora-ostree-desktops/cosmic-atomic?tab=tags)
-- Fedora Base Atomic:
-    - Minimal image with no desktop environment
-    - [quay.io/repository/fedora-ostree-desktops/base-atomic](https://quay.io/repository/fedora-ostree-desktops/base-atomic?tab=tags)
+Installer ISOs are built using [Lorax](https://github.com/weldr/lorax) and
+additional templates:
+[pagure.io/fedora-lorax-templates](https://pagure.io/fedora-lorax-templates).
 
-Special images that may not always be available,
-(see [Introducing Kinoite Nightly (and Kinoite Beta)](https://tim.siosm.fr/blog/2023/01/20/introducing-kinoite-nightly-beta/)):
+## Website
 
-- Fedora Kinoite Nightly:
-    - Unofficial Kinoite variant with nightly KDE packages from [solopasha's COPRs](https://github.com/solopasha/kde6-copr)
-    - [quay.io/repository/fedora-ostree-desktops/kinoite-nightly](https://quay.io/repository/fedora-ostree-desktops/kinoite-nightly?tab=tags)
-- Fedora Kinoite Beta:
-    - On hold right now
-<!--    - Unofficial Kinoite variant with KDE Plasma Beta packages from [@kdesig/kde-beta](https://copr.fedorainfracloud.org/coprs/g/kdesig/kde-beta/) -->
-<!--    - [quay.io/repository/fedora-ostree-desktops/kinoite-beta](https://quay.io/repository/fedora-ostree-desktops/kinoite-beta?tab=tags) -->
+The sources for the
+[Silverblue](https://fedoraproject.org/atomic-desktops/silverblue/),
+[Kinoite](https://fedoraproject.org/atomic-desktops/kinoite/),
+[Sway Atomic](https://fedoraproject.org/atomic-desktops/sway/) and
+[Budgie Atomic](https://fedoraproject.org/atomic-desktops/budgie/) websites are
+in [gitlab.com/fedora/fedora-websites-3.0](https://gitlab.com/fedora/websites-apps/fedora-websites/fedora-websites-3.0).
 
-Other images no longer built starting with Fedora 43 due to lack of users and
-help with maintenance:
+## Issue trackers
 
-- Fedora LXQt Atomic:
-    - Unofficial LXQt variant
-    - [quay.io/repository/fedora-ostree-desktops/lxqt-atomic](https://quay.io/repository/fedora-ostree-desktops/lxqt-atomic?tab=tags)
-- Fedora XFCE Atomic:
-    - Unofficial XFCE variant
-    - [quay.io/repository/fedora-ostree-desktops/xfce-atomic](https://quay.io/repository/fedora-ostree-desktops/xfce-atomic?tab=tags)
+Issues common to all Fedora Atomic Desktops are tracked in
+[gitlab.com/fedora/ostree/sig](https://gitlab.com/fedora/ostree/sig/-/issues).
 
-## Setup container image signature verification
+Desktop specific issues should be filed in their respective issue trackers:
 
-- Get the public key from this repo and install it:
+- [Silverblue](https://github.com/fedora-silverblue/issue-tracker/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)
+    - See also the [Workstation issue tracker](https://pagure.io/fedora-workstation/issues?status=Open&order_key=last_updated&order=desc)
+- [Kinoite](https://pagure.io/fedora-kde/SIG/issues?status=Open&order_key=last_updated&order=desc)
+  ([KDE SIG](https://fedoraproject.org/wiki/SIGs/KDE))
+- [Sway Atomic](https://gitlab.com/fedora/sigs/sway/SIG/-/issues)
+  ([Sway SIG](https://fedoraproject.org/wiki/SIGs/Sway))
+- [Budgie Atomic](https://pagure.io/fedora-budgie/project/issues?status=Open&order_key=last_updated&order=desc)
+  ([Budgie SIG](https://fedoraproject.org/wiki/SIGs/Budgie))
 
-  ```
-  $ sudo mkdir /etc/pki/containers
-  $ curl -O "https://gitlab.com/fedora/ostree/ci-test/-/raw/main/quay.io-fedora-ostree-desktops.pub?ref_type=heads&inline=false"
-  $ sudo cp quay.io-fedora-ostree-desktops.pub /etc/pki/containers/
-  $ sudo restorecon -RFv /etc/pki/containers
-  $ rm quay.io-fedora-ostree-desktops.pub
-  ```
+## Documentation
 
-- Add registry configuration to get sigstore signatures:
+The documentation for Fedora Atomic variants is currently duplicated for each
+variant at [Atomic Desktops](https://docs.fedoraproject.org/en-US/emerging/).
 
-  ```
-  $ cat /etc/containers/registries.d/quay.io-fedora-ostree-desktops.yaml
-  docker:
-    quay.io/fedora-ostree-desktops:
-      use-sigstore-attachments: true
-  $ sudo restorecon -RFv /etc/containers/registries.d
-  ```
+There are plans to unify the documentation:
+[ostree/sig#10](https://gitlab.com/fedora/ostree/sig/-/issues/10)
 
-- Add config to the container fetching policy:
+Documentation sources:
 
-  ```
-  $ cat /etc/containers/policy.json
-  {
-      "default": [{ "type": "reject" }],
-      "transports": {
-          "docker": {
-              "quay.io/fedora-ostree-desktops": [
-                  {
-                      "type": "sigstoreSigned",
-                      "keyPath": "/etc/pki/containers/quay.io-fedora-ostree-desktops.pub",
-                      "signedIdentity": {
-                          "type": "matchRepository"
-                      }
-                  }
-              ],
-              "": [{ "type": "insecureAcceptAnything" }]
-          },
-          "containers-storage": {
-              "": [{ "type": "insecureAcceptAnything" }]
-          },
-          "oci": {
-              "": [{ "type": "insecureAcceptAnything" }]
-          },
-          "oci-archive": {
-              "": [{ "type": "insecureAcceptAnything" }]
-          },
-          "docker-daemon": {
-              "": [{ "type": "insecureAcceptAnything" }]
-          }
-      }
-  }
-  ```
+- [Silverblue](https://github.com/fedora-silverblue/silverblue-docs)
+- [Kinoite](https://pagure.io/fedora-kde/kinoite-docs)
+- [Sway Atomic](https://gitlab.com/fedora/sigs/sway/sericea-docs)
+- Budgie Atomic (to be determined)
 
-- Rebase:
+## Building
 
-  ```
-  $ sudo rpm-ostree rebase ostree-image-signed:registry:quay.io/fedora-ostree-desktops/silverblue:42
-  ```
+All commonly used commands are listed as recipes in the
+[justfile](https://github.com/casey/just) (see
+[Just](https://github.com/casey/just)).
 
-## Can I add an image here? How do I add my image?
+Example to do a local build of Fedora Silverblue:
 
-In this repo, we will only build images from official Fedora RPM packages or
-from COPR repos maintained by official Fedora SIGs.
+```
+# Clone the config
+$ git clone https://pagure.io/workstation-ostree-config && cd workstation-ostree-config
 
-File an issue in this repo if you want another desktop variant to be built.
+# Build the classic ostree commits (currently the default in Fedora)
+$ just compose-legacy variant=silverblue
 
-In all other cases, you will have to host your own CI and images. Take a look
-at the [Universal Blue project](https://universal-blue.org/) for examples.
+# Or build the new ostree native container (not default yet, still in development)
+$ just compose-image variant=silverblue
+```
 
-If you want to maintain a new official image in Fedora, you can follow the
-[How to add a new Fedora Atomic Desktop variant in Fedora?](https://tim.siosm.fr/blog/2023/06/21/rpm-ostree-variants-fedora/)
-guide.
+## Testing
+
+Instructions to test the resulting build for classic ostree commits:
+
+- First, serve the ostree repo using an HTTP server. You can use any static
+  file server. For example using
+  <https://github.com/TheWaWaR/simple-http-server>:
+
+```
+simple-http-server --index --ip 192.168.122.1 --port 8000
+```
+
+- Then, on an already installed Silverblue system:
+
+```
+# Add an ostree remote
+sudo ostree remote add testremote http://192.168.122.1:8000/repo --no-gpg-verify
+
+# Pin the currently deployed (and probably working) version
+sudo ostree admin pin 0
+
+# List refs from variant remote
+sudo ostree remote refs testremote
+
+# Switch to your variant
+sudo rpm-ostree rebase testremote:fedora/rawhide/x86_64/silverblue
+
+# Reboot and test!
+```
+
+Instructions to test the resulting build for ostree native containers:
+
+- Push the OCI archive to a container registry
+- Rebase to it:
+
+```
+$ rpm-ostree rebase ostree-unverified-image:registry:<oci image>
+```
+
+See [URL format for ostree native containers](https://coreos.github.io/rpm-ostree/container/#url-format-for-ostree-native-containers) for details.
+
+## Syncing with Fedora Comps
+
+[Fedora Comps](https://pagure.io/fedora-comps) are "XML files used by various
+Fedora tools to perform grouping of packages into functional groups."
+
+Changes to the comps files need to be regularly propagated to this repo so that
+the Fedora Atomic variants are kept updated with the other desktop variants.
+
+### Using `just`
+
+If you have the `just` command installed, you can run `just comps-sync` from a
+`git` checkout of this repo to update the packages included in the Fedora Atomic
+variants. Examine the changes and cross-reference them with PRs made to the
+`fedora-comps` repo. Create a pull request with the changes and note any PRs from
+`fedora-comps` in the commit message that are relevant to the changes you have
+generated.
+
+### Using `comps-sync.py` directly
+
+If you don't have `just` installed or want to run the `comps-sync.py` script
+directly, you need to have an up-to-date `git` checkout of
+https://pagure.io/fedora-comps and a `git` checkout of this repository.
+
+Using the `comps-sync.py` script, provide the updated input XML file to examine
+the changes as a dry-run:
+
+`$ ./comps-sync.py /path/to/fedora-comps/comps-f44.xml.in`
+
+Examine the changes and cross-reference them with PRs made to the `fedora-comps`
+repo. When you are satisfied that the changes are accurate and appear safe,
+re-run the script with the `--save` option:
+
+`$ ./comps-sync.py --save /path/to/fedora-comps/comps-f44.xml.in`
+
+Create a pull request with the changes and note any PRs from `fedora-comps`
+in the commit message that are relevant to the changes you have generated.
+
+## Branching instructions for new Fedora releases
+
+Follow those steps during the Fedora branch process in Fedora:
+
+### Fedora Ansible
+
+Make a PR similar to
+[ansible#1318](https://pagure.io/fedora-infra/ansible/pull-request/1318) in
+[fedora-infra/ansible](https://pagure.io/fedora-infra/ansible).
+
+### On Rawhide / main branch
+
+```
+sed -i "s/44/45/g" *.repo comps-sync.py
+sed -i "s/releasever: 44/releasever: 45/" common.yaml
+sed -i --follow-symlinks "s/# - fedora-44/# - fedora-45/" *.yaml
+mv fedora-44.repo fedora-45.repo
+mv fedora-44-updates.repo fedora-45-updates.repo
+sed -i "s/45/46/g" README.md
+sed -i "s/44/45/g" README.md
+```
+
+### On the new branch (f44)
+
+```
+rm fedora-rawhide.repo
+sed -i --follow-symlinks "/- fedora-rawhide/d" *.yaml
+sed -i --follow-symlinks "s/# - fedora-44/- fedora-44/" *.yaml
+sed -i --follow-symlinks "s/ref: fedora\/rawhide/ref: fedora\/44/" *.yaml
+```
+
+## Historical references
+
+Building and testing instructions:
+
+- https://dustymabe.com/2017/10/05/setting-up-an-atomic-host-build-server/
+- https://dustymabe.com/2017/08/08/how-do-we-create-ostree-repos-and-artifacts-in-fedora/
+- https://www.projectatomic.io/blog/2017/12/compose-custom-ostree/
+- https://www.projectatomic.io/docs/compose-your-own-tree/
+
+For some background, see:
+
+- <https://fedoraproject.org/wiki/Workstation/AtomicWorkstation>
+- <https://fedoraproject.org/wiki/Changes/WorkstationOstree>
+- <https://fedoraproject.org/wiki/Changes/Silverblue>
+- <https://fedoraproject.org/wiki/Changes/Fedora_Kinoite>
+
+Note also this repo obsoletes https://pagure.io/atomic-ws

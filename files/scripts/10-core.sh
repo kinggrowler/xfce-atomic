@@ -1,3 +1,5 @@
+# Originally from common.yaml file
+
 #!/bin/bash
 
 set -ouex pipefail
