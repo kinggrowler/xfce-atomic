@@ -75,7 +75,7 @@
                 "xfwm4-themes",
                 "xorg-x11-drv-amdgpu",
                 "xorg-x11-drv-ati",
-                "xorg-x11-drv-evdev",,
+                "xorg-x11-drv-evdev",
                 "xorg-x11-drv-intel",
                 "xorg-x11-drv-libinput",
                 "xorg-x11-drv-nouveau",
