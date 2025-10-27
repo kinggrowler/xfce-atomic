@@ -10,3 +10,4 @@ cat > /usr/lib/ostree/prepare-root.conf << 'EOF'
 [sysroot]
 readonly = true
 EOF
+

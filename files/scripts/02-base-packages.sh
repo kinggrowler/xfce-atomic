@@ -56,3 +56,4 @@ if [[ "${#INSTALLED_EXCLUDED_PACKAGES[@]}" -gt 0 ]]; then
     dnf5 -y remove \
         ${INSTALLED_EXCLUDED_PACKAGES[@]}
 fi
+
