@@ -1,22 +1,15 @@
-# Manifests for Fedora Atomic Desktops variants
+# Manifests for Fedora Atomic Desktop XFCE variant
 
 This is the configuration needed to create
 [rpm-ostree](https://coreos.github.io/rpm-ostree/) based, desktop variants of
 Fedora, also known as
 [Fedora Atomic Desktops](https://fedoraproject.org/atomic-desktops/).
 
-This repo is managed by the
-[Fedora Atomic Desktops SIG](https://fedoraproject.org/wiki/SIGs/AtomicDesktops).
+This repo is in no way an official Fedora repo, but created solely for us by me, @kinggrowler!
 
-The currently official Fedora Atomic Desktop variants are:
+The Fedora Atomic Desktop variant created by this repo is:
 
-- Fedora Silverblue
-- Fedora Kinoite
-- Fedora Sway Atomic
-- Fedora Budgie Atomic
-
-Reach out to the SIG if you are interested in creating and maintaining a new
-Atomic variant.
+- Fedora XFCE Atomic
 
 ## Repository content
 
@@ -32,34 +25,6 @@ In the Fedora infrastructure, composes are made via
 - for stable releases:
   [pagure.io/fedora-infra](https://pagure.io/fedora-infra/ansible/blob/main/f/roles/bodhi2/backend/templates/pungi.rpm.conf.j2)
 
-Installer ISOs are built using [Lorax](https://github.com/weldr/lorax) and
-additional templates:
-[pagure.io/fedora-lorax-templates](https://pagure.io/fedora-lorax-templates).
-
-## Website
-
-The sources for the
-[Silverblue](https://fedoraproject.org/atomic-desktops/silverblue/),
-[Kinoite](https://fedoraproject.org/atomic-desktops/kinoite/),
-[Sway Atomic](https://fedoraproject.org/atomic-desktops/sway/) and
-[Budgie Atomic](https://fedoraproject.org/atomic-desktops/budgie/) websites are
-in [gitlab.com/fedora/fedora-websites-3.0](https://gitlab.com/fedora/websites-apps/fedora-websites/fedora-websites-3.0).
-
-## Issue trackers
-
-Issues common to all Fedora Atomic Desktops are tracked in
-[gitlab.com/fedora/ostree/sig](https://gitlab.com/fedora/ostree/sig/-/issues).
-
-Desktop specific issues should be filed in their respective issue trackers:
-
-- [Silverblue](https://github.com/fedora-silverblue/issue-tracker/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc)
-    - See also the [Workstation issue tracker](https://pagure.io/fedora-workstation/issues?status=Open&order_key=last_updated&order=desc)
-- [Kinoite](https://pagure.io/fedora-kde/SIG/issues?status=Open&order_key=last_updated&order=desc)
-  ([KDE SIG](https://fedoraproject.org/wiki/SIGs/KDE))
-- [Sway Atomic](https://gitlab.com/fedora/sigs/sway/SIG/-/issues)
-  ([Sway SIG](https://fedoraproject.org/wiki/SIGs/Sway))
-- [Budgie Atomic](https://pagure.io/fedora-budgie/project/issues?status=Open&order_key=last_updated&order=desc)
-  ([Budgie SIG](https://fedoraproject.org/wiki/SIGs/Budgie))
 
 ## Documentation
 
@@ -71,10 +36,7 @@ There are plans to unify the documentation:
 
 Documentation sources:
 
-- [Silverblue](https://github.com/fedora-silverblue/silverblue-docs)
-- [Kinoite](https://pagure.io/fedora-kde/kinoite-docs)
-- [Sway Atomic](https://gitlab.com/fedora/sigs/sway/sericea-docs)
-- Budgie Atomic (to be determined)
+- XFCE Atomic (to be determined)
 
 ## Building
 
