@@ -97,7 +97,7 @@ modules:
       - 11-bootupd.sh
       - 12-initramfs.sh
       - 13-sysroot-ro.sh
-      - 14-composefs.sh
+      #- 14-composefs.sh
       - 95-sanity-check.sh
 
   - type: signing

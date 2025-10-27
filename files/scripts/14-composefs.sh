@@ -5,7 +5,7 @@
 
 set -xeuo pipefail
 
-cat >> /usr/lib/ostree/prepare-root.conf << 'EOF'
+cat > /usr/lib/ostree/prepare-root.conf << 'EOF'
 [composefs]
 enabled = yes
 EOF
