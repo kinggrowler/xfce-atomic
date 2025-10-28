@@ -1,13 +1,13 @@
 # Manifests for Fedora Atomic Desktop XFCE variant
 
-This is the configuration needed to create
-[rpm-ostree](https://coreos.github.io/rpm-ostree/) based, desktop variants of
+This is the configuration needed to create an
+[rpm-ostree](https://coreos.github.io/rpm-ostree/) based, desktop variant of
 Fedora, also known as
 [Fedora Atomic Desktops](https://fedoraproject.org/atomic-desktops/).
 
-This repo is in no way an official Fedora repo, but created solely for us by me, @kinggrowler!
+This repo is in no way an official Fedora repo, but created solely by me, @kinggrowler! You should absolutely not use this unless you truly know what you are doing. You should really really use an official Fedora Atomic Desktop variant.
 
-The Fedora Atomic Desktop variant created by this repo is:
+The only Fedora Atomic Desktop variant created by this repo is:
 
 - Fedora XFCE Atomic
 
