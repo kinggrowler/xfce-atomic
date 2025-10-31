@@ -6,8 +6,8 @@ set -xeuo pipefail
 
 source /usr/lib/os-release
 
-# Check if the ID is Fedora and VERSION_ID is 42 or higher
-if [[ "$ID" == "fedora" && "$VERSION_ID" -ge 42 ]]; then
+# Check if the ID is Fedora and VERSION_ID is 43 or higher
+if [[ "$ID" == "fedora" && "$VERSION_ID" -ge 43 ]]; then
     echo -e "# kernel-install will not try to run dracut and allow rpm-ostree to\n\
 # take over. Rpm-ostree will use this to know that it is responsible\n\
 # to run dracut and ensure that there is only one kernel in the image\n\
