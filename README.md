@@ -1,3 +1,5 @@
+[![bluebuild build badge](https://github.com/kinggrowler/xfce-atomic/actions/workflows/build.yml/badge.svg)](https://github.com/kinggrowler/xfce-atomic/actions/workflows/build.yml)
+
 # Manifests for Fedora Atomic Desktop XFCE variant
 
 This is the configuration needed to create an
