@@ -1,4 +1,4 @@
-name: Build latest images
+name: Build latest XFCE Atomic image
 on:
 #  schedule:
 #    - cron:
@@ -30,7 +30,7 @@ jobs:
           - xfce-atomic.yaml
     steps:
       # the build is fully handled by the reusable github action
-      - name: Build Custom Image
+      - name: Build XFCE Image
         uses: blue-build/github-action@v1.9
         with:
           recipe: ${{ matrix.recipe }}
