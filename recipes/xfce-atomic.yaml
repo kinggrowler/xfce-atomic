@@ -101,5 +101,6 @@ modules:
       - 14-composefs.sh
       - 95-sanity-check.sh
 
+  - type: initramfs
   - type: signing
 
