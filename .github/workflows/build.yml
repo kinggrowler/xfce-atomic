@@ -1,4 +1,6 @@
 name: Build latest XFCE Atomic image
+
+# this build is now triggered via consumer parav workflow
 on:
 #  schedule:
 #    - cron:
@@ -40,5 +42,5 @@ jobs:
 
           # enabled by default, disable if your image is small and you want faster builds
           maximize_build_space: true
-          #rechunk: true
+          rechunk: true
 
