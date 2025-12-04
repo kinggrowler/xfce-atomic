@@ -1,6 +1,7 @@
 name: Build latest XFCE Atomic image
 
-# this build is now triggered via consumer parav workflow
+# this build is now triggered via consumer parav workflow using
+# convictional/trigger-workflow-and-wait@v1.6.5
 on:
 #  schedule:
 #    - cron:
