@@ -1,8 +1,9 @@
+#!/usr/bin/env bash
+
+set -xeuo pipefail
+
 # Configuration to enable kernel-install integration
 # Keep in sync with https://gitlab.com/fedora/bootc/base-images/-/blob/main/tier-0/kernel-install.yaml
-
-#!/usr/bin/env bash
-set -xeuo pipefail
 
 source /usr/lib/os-release
 

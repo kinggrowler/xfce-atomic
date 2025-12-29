@@ -1,9 +1,10 @@
+#!/usr/bin/env bash
+
+set -xeuo pipefail
+
 # Set up default root config to mount sysroot as read only
 # https://fedoraproject.org/wiki/Changes/Silverblue_Kinoite_readonly_sysroot
 # See: https://gitlab.com/fedora/bootc/base-images/-/blob/main/tier-0/ostree.yaml
-
-#!/usr/bin/env bash
-set -xeuo pipefail
 
 install -dm 0755 -o 0 -g 0 /usr/lib/ostree
 cat > /usr/lib/ostree/prepare-root.conf << 'EOF'

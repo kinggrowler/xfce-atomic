@@ -1,9 +1,8 @@
-# Originally from common.yaml file
-
 #!/bin/bash
 
 set -ouex pipefail
 
+# Originally from common.yaml file
 
 # Work around https://bugzilla.redhat.com/show_bug.cgi?id=1265295
 # From https://github.com/coreos/fedora-coreos-config/blob/testing-devel/overlay.d/05core/usr/lib/systemd/journald.conf.d/10-coreos-persistent.conf

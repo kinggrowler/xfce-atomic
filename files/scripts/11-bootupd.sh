@@ -1,9 +1,10 @@
+#!/bin/bash
+
+set -xeuo pipefail
+
 # KEEP THIS IN SYNC WITH https://github.com/coreos/fedora-coreos-config/blob/testing-devel/manifests/bootupd.yaml
 # Integration with https://github.com/coreos/bootupd
 # xref https://github.com/coreos/fedora-coreos-tracker/issues/510
-
-#!/bin/bash
-set -xeuo pipefail
 
 # ...already installed, so this breaks the workflow...
 #dnf5 -y install bootupd

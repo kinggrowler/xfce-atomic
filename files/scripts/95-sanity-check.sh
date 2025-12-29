@@ -1,8 +1,9 @@
 #!/bin/bash
-# let's barf if key packages aren't installed, indicated
-# something failed along the way.
 
 set -euo pipefail
+
+# let's barf if key packages aren't installed, indicated
+# something failed along the way.
 
 packages=("mousepad" "xfce4-terminal" "fedora-release-xfce")
 
