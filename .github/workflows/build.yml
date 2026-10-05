@@ -1,11 +1,9 @@
 name: Build latest XFCE Atomic image
 
-# this build is now triggered via consumer workflow using
-#    convictional/trigger-workflow-and-wait@v1.6.5
 on:
-#  schedule:
-#    - cron:
-#        "00 09 * * *" # build at 09:00 UTC every day
+  schedule:
+    - cron:
+        "00 19 */4 * *" # build at 09:00 UTC every 4 days
 #  push:
 #    branches:
 #      - master
