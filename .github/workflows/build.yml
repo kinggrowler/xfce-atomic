@@ -3,7 +3,7 @@ name: Build latest XFCE Atomic image
 on:
   schedule:
     - cron:
-        "00 09 */4 * *" # build at 09:00 UTC every 4 days
+        "00 04 */4 * *" # build at 04:00 UTC every 4 days
 #  push:
 #    branches:
 #      - master
