@@ -19,7 +19,6 @@
                 "greybird-xfwm4-theme",
                 "gtk-xfce-engine",
                 "gvfs",
-                "gvfs-archive",
                 "gvfs-mtp",
                 "initial-setup-gui",
                 "lightdm-gtk",
