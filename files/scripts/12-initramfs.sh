@@ -22,6 +22,6 @@ EOF
 
 cat > /usr/lib/dracut/dracut.conf.d/20-atomic-tpm-luks.conf << 'EOF'
 # Add support for systemd-cryptsetup and tpm2-tss LUKS locking
-add_dracutmodules+=" tpm2-tss systemd-pcrphase "
+add_dracutmodules+=" tpm2-tss systemd-pcrextend "
 EOF
 
